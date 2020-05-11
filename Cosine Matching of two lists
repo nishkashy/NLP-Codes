@@ -1,0 +1,29 @@
+import pandas as pd
+import nltk
+from nltk.corpus import stopwords 
+from nltk.tokenize import word_tokenize 
+# initialize a list for matching result
+match=[]
+# match each entry in df1 with df2
+for i in range(len(df1['column']):
+    intmatch=[]
+    for j in range(len(df2['column'])):
+        X =df1['column'][i]
+        Y =df2['column'][j]
+        X_list = word_tokenize(X)  # tokenize into words
+        Y_list = word_tokenize(Y) 
+        l1 =[];l2 =[] 
+        X_set = {w for w in X_list}  
+        Y_set = {w for w in Y_list} 
+        rvector = X_set.union(Y_set)  # create the vectors
+        for w in rvector: 
+            if w in X_set: l1.append(1) # create a vector 
+            else: l1.append(0) 
+            if w in Y_set: l2.append(1) 
+            else: l2.append(0) 
+        c = 0
+        for n in range(len(rvector)): 
+                c+= l1[n]*l2[n] 
+        cosine = c / float((sum(l1)*sum(l2))**0.5) #calculate cosine match scores
+        intmatch.append(cosine)
+    match.append(max(intmatch)) # append the maximum matched 
