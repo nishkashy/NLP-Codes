@@ -26,4 +26,4 @@ for i in range(len(df1['column']):
                 c+= l1[n]*l2[n] 
         cosine = c / float((sum(l1)*sum(l2))**0.5) #calculate cosine match scores
         intmatch.append(cosine)
-    match.append(max(intmatch)) # append the maximum matched 
+    match.append(max(intmatch)) # append the maximum matched score
